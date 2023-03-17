@@ -1,9 +1,16 @@
-package co.mlforex.forecast.model;
+package co.mlforex.forecast.analizador.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+
+@DynamoDBDocument
 public class Vulnerabilidad {
 
+    @DynamoDBAttribute
     private String tipoVulnerabilidad;
+    @DynamoDBAttribute
     private String descripcion;
+    @DynamoDBAttribute
     private String severidad;
 
     public String getTipoVulnerabilidad() {

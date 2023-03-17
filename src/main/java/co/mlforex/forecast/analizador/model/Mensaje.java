@@ -1,17 +1,30 @@
-package co.mlforex.forecast.model;
+package co.mlforex.forecast.analizador.model;
+
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
 
 import java.io.Serializable;
 import java.util.List;
 
+@DynamoDBDocument
 public class Mensaje implements Serializable {
 
-
+    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
+    @DynamoDBAttribute
     private Boolean codigoVulnerable;
+    @DynamoDBAttribute
     private String linkRepo;
+    @DynamoDBAttribute
     private String branchRepoName;
+    @DynamoDBAttribute
     private String analizadorUsar;
+    @DynamoDBAttribute
     private String lastCommitHash;
+    @DynamoDBAttribute
     private String idUsuario;
+
     private List<Vulnerabilidad> listaVulnerabilidades;
 
     public Boolean getCodigoVulnerable() {
@@ -62,6 +75,7 @@ public class Mensaje implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    @DynamoDBAttribute(attributeName = "listaVulnerabilidades")
     public List<Vulnerabilidad> getListaVulnerabilidades() {
         return listaVulnerabilidades;
     }

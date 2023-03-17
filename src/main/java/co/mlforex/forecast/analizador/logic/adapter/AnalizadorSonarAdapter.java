@@ -1,6 +1,6 @@
-package co.mlforex.forecast.logic.adapter;
+package co.mlforex.forecast.analizador.logic.adapter;
 
-import co.mlforex.forecast.model.Mensaje;
+import co.mlforex.forecast.analizador.model.Mensaje;
 
 public class AnalizadorSonarAdapter implements Analizador{
     @Override

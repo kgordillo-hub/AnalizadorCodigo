@@ -1,8 +1,8 @@
-package co.mlforex.forecast.logic.factory;
+package co.mlforex.forecast.analizador.logic.factory;
 
-import co.mlforex.forecast.logic.adapter.Analizador;
-import co.mlforex.forecast.logic.adapter.AnalizadorPMDAdapter;
-import co.mlforex.forecast.logic.adapter.AnalizadorSonarAdapter;
+import co.mlforex.forecast.analizador.logic.adapter.Analizador;
+import co.mlforex.forecast.analizador.logic.adapter.AnalizadorSonarAdapter;
+import co.mlforex.forecast.analizador.logic.adapter.AnalizadorPMDAdapter;
 
 public class AnalizadorFactory {
 

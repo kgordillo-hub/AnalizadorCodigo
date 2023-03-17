@@ -1,14 +1,21 @@
-package co.mlforex.forecast.model;
+package co.mlforex.forecast.analizador.model;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.Serializable;
 
 @DynamoDBTable(tableName = "AnalisisCodigoInfo")
 public class TransaccionInfo implements Serializable {
-    //Partition Key
+
+    private String UID;
+    @DynamoDBAttribute
     private String nombreApp;
+    @DynamoDBAttribute
     private String version;
+    @DynamoDBAttribute
     private String idTransaccion;
 
     //Attributes
@@ -38,11 +45,25 @@ public class TransaccionInfo implements Serializable {
         this.idTransaccion = idTransaccion;
     }
 
+    @DynamoDBAttribute(attributeName = "mensaje")
     public Mensaje getMensaje() {
         return mensaje;
     }
 
     public void setMensaje(Mensaje mensaje) {
         this.mensaje = mensaje;
+    }
+
+    @DynamoDBHashKey(attributeName = "UID")
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+    public String generateUID(){
+        return DigestUtils.md5Hex(nombreApp.toLowerCase()+":"+version+":"+idTransaccion);
     }
 }
