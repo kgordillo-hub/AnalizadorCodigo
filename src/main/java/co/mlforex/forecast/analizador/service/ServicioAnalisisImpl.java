@@ -26,10 +26,10 @@ public class ServicioAnalisisImpl implements ServicioAnalisis {
         if(!tiDb.isEmpty()){
             return Boolean.FALSE;
         }else {
+            transaccionInfo.getMensaje().setCodigoVulnerable(Boolean.FALSE);
             final String message = new GsonBuilder().disableHtmlEscaping().create().toJson(transaccionInfo);
             new NotificadorSns().publishMessageSns(message,snsTopicAnalisisOut);
             //Ejecutar analisis de código
-            transaccionInfo.getMensaje().setCodigoVulnerable(Boolean.FALSE);
             transaccionInfo.setUID(transaccionInfo.generateUID());
             analisisCodigoInfoRepo.save(transaccionInfo);
             return Boolean.TRUE;
